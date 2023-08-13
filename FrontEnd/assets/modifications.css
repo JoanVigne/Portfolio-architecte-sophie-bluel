@@ -1,25 +1,40 @@
+:root {
+  --green: rgba(29, 97, 84, 1);
+  --green-opacity-zero: rgba(29, 97, 84, 0);
+  /*   --pane-padding: 5px 42px; */
+}
+
 body {
   background-color: floralwhite;
 }
 
+/* CATEGORY BUTTONS */
 .categoryContainer {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
 }
+
 .categoryContainer button {
   cursor: pointer;
   font-family: "Syne";
   background-color: rgba(29, 97, 84, 0);
-  color: rgba(29, 97, 84, 1);
-  border: rgba(29, 97, 84, 1) 1px solid;
+  color: var(--green);
+  border: var(--green) 1px solid;
   height: 30px;
   min-width: 80px;
   border-radius: 25px;
   margin: 5px;
+  transition: background-color 0.7s ease, color 0.3s ease;
 }
 
 .categoryContainer button:hover {
-  background-color: rgba(29, 97, 84, 1);
+  background-color: var(--green);
   color: floralwhite;
 }
+
+.categoryContainer button:focus {
+  background-color: var(--green);
+  color: floralwhite;
+}
+/* END CATEGORY BUTTONS */

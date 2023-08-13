@@ -6,11 +6,20 @@ export function displayCategories(categories) {
   // creation button "TOUS"
   let buttonTous = document.createElement("button");
   buttonTous.innerText = "Tous";
+  buttonTous.addEventListener("click", (buttonTous) =>
+    categoryClicked(buttonTous)
+  );
   categoryContainer.appendChild(buttonTous);
   // boucle our les autres buttons
   categories.forEach((category) => {
     let button = document.createElement("button");
     button.innerHTML = category.name;
+    button.addEventListener("click", (button) => categoryClicked(button));
     categoryContainer.appendChild(button);
   });
+}
+
+// ON CLICK
+export function categoryClicked(e) {
+  console.log("this button => ", e.target.innerText);
 }
