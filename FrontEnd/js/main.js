@@ -6,9 +6,9 @@ let categories = [];
 const init = async () => {
   works = await getWorks(works);
   categories = await getCategories(categories);
-  displayWorks(works);
-  displayCategories(categories);
-  console.log(works);
+  displayWorks(works); // display les travaux
+  displayCategories(categories); // display les categories
+  connected(); // user connected ? display la modification
 };
 init();
 
@@ -53,4 +53,15 @@ function categoryClicked(category) {
     (work) => work.category.name === thisCategory
   );
   displayWorks(onlyThisCategory);
+}
+
+function connected() {
+  let user = localStorage.getItem("user");
+
+  JSON.parse(user).userId === 1 && displayModify();
+}
+
+function displayModify() {
+  const container = document.querySelector(".containerEdit");
+  container.classList.add("displayed");
 }
