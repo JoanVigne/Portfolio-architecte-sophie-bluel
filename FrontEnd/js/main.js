@@ -47,12 +47,10 @@ function displayCategories(categories) {
 }
 
 // onclick sur categories autre que TOUS
-async function categoryClicked(category) {
+function categoryClicked(category) {
   let thisCategory = category.target.innerText;
-  works = await getWorks(works);
   let onlyThisCategory = works.filter(
     (work) => work.category.name === thisCategory
   );
-
   displayWorks(onlyThisCategory);
 }
