@@ -12,7 +12,6 @@ async function login(event) {
     email: document.querySelector('input[type="email"]').value,
     password: document.querySelector('input[type="password"]').value,
   };
-  console.log(identification);
 
   await fetch("http://localhost:5678/api/users/login", {
     method: "POST",
@@ -24,8 +23,15 @@ async function login(event) {
     .then((res) => res.json())
     .then((data) => {
       console.log("DATA: ", JSON.stringify(data));
-      localStorage.setItem("user", JSON.stringify(data));
+      // IF MOT DE PASSE OU EMAIL INCORRECT
+      if (JSON.stringify(data) === `{"message":"user not found"}`) {
+        alert("Utilisateur ou mot de passe incorrect");
+        // IF MOT DE PASSE ET EMAIL OK
+      } else {
+        // STOCK LE USER TOKEN ET ID DANS LE LOCALSTORAGE
+        localStorage.setItem("user", JSON.stringify(data));
+        window.location.href = "http://localhost:8080/index.html";
+      }
     })
-    .catch((err) => console.log("ERROR: ", err));
-  window.location.href = "http://localhost:8080/index.html";
+    .catch((err) => alert("ERROR: ", err));
 }

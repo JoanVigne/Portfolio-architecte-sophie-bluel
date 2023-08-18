@@ -1,4 +1,5 @@
 import { getWorks, getCategories } from "../data/api.js";
+import { modalContent } from "./modal.js";
 
 let works = [];
 let categories = [];
@@ -6,14 +7,28 @@ let categories = [];
 const init = async () => {
   works = await getWorks(works);
   categories = await getCategories(categories);
-  displayWorks(works); // display les travaux
+  displayWorks(works); // display les travaux dans les div "gallery"
   displayCategories(categories); // display les categories
   connected(); // user connected ? display la modification
+  displayWorksModal(works); // pour l'instant
+  modalContent();
 };
 init();
 
 function displayWorks(works) {
   let gallery = document.querySelector(".gallery");
+  gallery.innerHTML = "";
+  works.forEach((work) => {
+    gallery.innerHTML += `<figure><img src="${work.imageUrl}" alt="${work.title}">
+      <figcaption>
+       ${work.title} 
+       </figcaption>
+       </figure>`;
+  });
+}
+
+function displayWorksModal(works) {
+  let gallery = document.querySelector(".modalGallery");
   gallery.innerHTML = "";
   works.forEach((work) => {
     gallery.innerHTML += `<figure><img src="${work.imageUrl}" alt="${work.title}">
@@ -65,3 +80,31 @@ function displayModify() {
   const container = document.querySelector(".containerEdit");
   container.classList.add("displayed");
 }
+
+// MODAL
+
+// pour pouvoir fermer le modal avec echap
+window.addEventListener("keydown", function (e) {
+  console.log("This key : ", e.key);
+  if (e.key === "Escape" || e.key === "Esc") {
+    console.log("touche echape");
+  }
+});
+
+// mode edition
+const modal = document.querySelector(".modal");
+
+const modifierProjets = document.querySelector("#modifierProjets");
+
+modifierProjets.addEventListener("click", () => {
+  modal.style.display = null;
+});
+
+modal.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// STOP PROPAGATION POUR CLICK OK SUR MODAL
+modal.querySelector(".modalContent").addEventListener("click", (e) => {
+  e.stopPropagation();
+});

@@ -17,6 +17,7 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <link rel="stylesheet" href="./assets/modifications_style.css" />
+    <link rel="stylesheet" href="./assets/modifications_modal.css" />
   </head>
   <body>
     <div class="containerEdit">
@@ -36,10 +37,24 @@
       </nav>
     </header>
     <main>
+      <!-- MODIFICATION HTML -->
+      <aside class="modal" style="display: none">
+        <div class="modalContent">
+          <div class="close">x</div>
+          <h3>Galerie photo</h3>
+          <div class="modalGallery"></div>
+        </div>
+      </aside>
       <section id="introduction">
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="" />
+          <span class="modifier"
+            ><span class="material-symbols-outlined"> edit_square </span
+            >modifier</span
+          >
         </figure>
+        <!-- MODIFICATION HTML -->
+
         <article>
           <h2>Designer d'espace</h2>
           <p>
@@ -61,7 +76,15 @@
       </section>
 
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <!-- MODIFICATION HTML -->
+        <div class="titreEtModifier">
+          <h2>Mes Projets</h2>
+          <a class="modifier" id="modifierProjets" href="#"
+            ><span class="material-symbols-outlined"> edit_square </span
+            >modifier</a
+          >
+        </div>
+
         <div class="gallery">
           <!-- WORKS GENERES VIA JAVASCRIPT -->
         </div>
