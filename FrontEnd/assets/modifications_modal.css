@@ -45,3 +45,23 @@
 .modalContent img {
   width: 100%;
 }
+
+.modalGallery figure {
+  position: relative;
+}
+.modalGallery figure:hover .move {
+  display: block;
+}
+.modalGallery .material-symbols-outlined {
+  position: absolute;
+  top: 5px;
+  background-color: black;
+  color: white;
+}
+.modalGallery figure .trash {
+  right: 5px;
+}
+.modalGallery figure .move {
+  display: none;
+  right: 25px;
+}

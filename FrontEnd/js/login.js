@@ -28,8 +28,8 @@ async function login(event) {
         alert("Utilisateur ou mot de passe incorrect");
         // IF MOT DE PASSE ET EMAIL OK
       } else {
-        // STOCK LE USER TOKEN ET ID DANS LE LOCALSTORAGE
-        localStorage.setItem("user", JSON.stringify(data));
+        // STOCK LE USER TOKEN ET ID DANS LE sessionStorage
+        sessionStorage.setItem("user", JSON.stringify(data));
         window.location.href = "http://localhost:8080/index.html";
       }
     })

@@ -1,5 +1,5 @@
 import { getWorks, getCategories } from "../data/api.js";
-import { modalContent } from "./modal.js";
+import { modalContent, displayWorksModal } from "./modal.js";
 
 let works = [];
 let categories = [];
@@ -17,18 +17,6 @@ init();
 
 function displayWorks(works) {
   let gallery = document.querySelector(".gallery");
-  gallery.innerHTML = "";
-  works.forEach((work) => {
-    gallery.innerHTML += `<figure><img src="${work.imageUrl}" alt="${work.title}">
-      <figcaption>
-       ${work.title} 
-       </figcaption>
-       </figure>`;
-  });
-}
-
-function displayWorksModal(works) {
-  let gallery = document.querySelector(".modalGallery");
   gallery.innerHTML = "";
   works.forEach((work) => {
     gallery.innerHTML += `<figure><img src="${work.imageUrl}" alt="${work.title}">
@@ -71,7 +59,7 @@ function categoryClicked(category) {
 }
 
 function connected() {
-  let user = localStorage.getItem("user");
+  let user = sessionStorage.getItem("user");
 
   JSON.parse(user).userId === 1 && displayModify();
 }
@@ -79,17 +67,14 @@ function connected() {
 function displayModify() {
   const container = document.querySelector(".containerEdit");
   container.classList.add("displayed");
+
+  const modifierButtons = document.querySelectorAll(".modifier");
+  modifierButtons.forEach((button) => {
+    button.style.display = "block";
+  });
 }
 
 // MODAL
-
-// pour pouvoir fermer le modal avec echap
-window.addEventListener("keydown", function (e) {
-  console.log("This key : ", e.key);
-  if (e.key === "Escape" || e.key === "Esc") {
-    console.log("touche echape");
-  }
-});
 
 // mode edition
 const modal = document.querySelector(".modal");
