@@ -18,14 +18,17 @@ export function displayWorksModal(works) {
 
 export function modalContent() {
   const modal = document.querySelector(".modal");
+  modal.setAttribute("aria-hidden", "true");
   let close = document.querySelector(".modalContent .close");
   close.addEventListener("click", () => {
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
   });
   window.addEventListener("keydown", function (e) {
     console.log("This key : ", e.key);
     if (e.key === "Escape" || e.key === "Esc") {
       modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
     }
   });
 }

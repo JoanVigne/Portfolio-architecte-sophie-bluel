@@ -10,7 +10,7 @@ const init = async () => {
   displayWorks(works); // display les travaux dans les div "gallery"
   displayCategories(categories); // display les categories
   connected(); // user connected ? display la modification
-  displayWorksModal(works); // pour l'instant
+  displayWorksModal(works); //
   modalContent();
 };
 init();
@@ -83,10 +83,12 @@ const modifierProjets = document.querySelector("#modifierProjets");
 
 modifierProjets.addEventListener("click", () => {
   modal.style.display = null;
+  modal.setAttribute("aria-hidden", "false");
 });
 
 modal.addEventListener("click", () => {
   modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
 });
 
 // STOP PROPAGATION POUR CLICK OK SUR MODAL

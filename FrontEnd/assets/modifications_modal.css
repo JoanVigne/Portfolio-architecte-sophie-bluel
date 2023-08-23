@@ -14,6 +14,7 @@
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 450px;
+  overflow: auto;
 
   max-width: calc(100vw - 20px);
   max-height: calc(100vh - 20px);
@@ -40,6 +41,7 @@
   margin: 40px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 5px;
+  grid-row-gap: 10px;
 }
 
 .modalContent img {
@@ -57,6 +59,7 @@
   top: 5px;
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 .modalGallery figure .trash {
   right: 5px;
@@ -64,4 +67,17 @@
 .modalGallery figure .move {
   display: none;
   right: 25px;
+}
+
+/* MODAL LOGIN ERREUR :  */
+
+.modalContent .okay {
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 210px;
+  height: 40px;
+  text-align: center;
+  border-radius: 60px;
 }

@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="./assets/style.css" />
     <link rel="stylesheet" href="./assets/modifications_login.css" />
     <link rel="stylesheet" href="./assets/modifications_style.css" />
+    <link rel="stylesheet" href="./assets/modifications_modal.css" />
   </head>
   <body>
     <header>
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
         <ul>
-          <li>projets</li>
+          <li>projets<a href="./index.html">projets</a></li>
           <li>contact</li>
           <li><a href="./login.html">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
@@ -28,13 +29,26 @@
       </nav>
     </header>
     <main>
+      <!-- MODAL QUI S OUVRE AUX ERREURS -->
+      <aside
+        class="modal"
+        style="display: none"
+        aria-hidden="true"
+        role="dialog"
+      >
+        <div class="modalContent">
+          <h3>Erreur de connection</h3>
+          <p class="messageErreur"></p>
+          <button class="okay">okay</button>
+        </div>
+      </aside>
       <section class="login">
         <h2>Log In</h2>
         <form method="post">
           <label>E-mail</label>
-          <input type="email" name="e-mail" id="email" />
+          <input type="email" name="email" />
           <label>Mot de passe</label>
-          <input type="password" name="Mot de passe" id="password" />
+          <input type="password" name="password" />
           <input type="submit" value="Se connecter" />
           <a href="#">Mot de passe oublié</a>
         </form>
