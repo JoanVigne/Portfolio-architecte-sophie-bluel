@@ -50,12 +50,14 @@ async function login(e) {
         return res.json();
       }
       if (res.status === 401) {
+        modalerreur("Utilisateur non autorisé");
         throw new Error("Utilisateur non autorisé");
       }
       if (res.status === 404) {
         modalerreur("Utilisateur ou mot de passe incorrect");
         throw new Error("Utilisateur ou mot de passe incorrect");
       } else {
+        modalerreur("Erreur incconnue");
         throw new Error("Erreur incconnue");
       }
     })

@@ -60,8 +60,7 @@ function categoryClicked(category) {
 
 function connected() {
   let user = sessionStorage.getItem("user");
-
-  JSON.parse(user).userId === 1 && displayModify();
+  user && JSON.parse(user).userId === 1 && displayModify();
 }
 
 function displayModify() {

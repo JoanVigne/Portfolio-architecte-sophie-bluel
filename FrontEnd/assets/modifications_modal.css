@@ -11,11 +11,12 @@
 }
 
 .modalContent {
+  display: flex;
+  flex-direction: column;
   background-color: white;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 450px;
-  overflow: auto;
-
   max-width: calc(100vw - 20px);
   max-height: calc(100vh - 20px);
   text-align: center;
@@ -23,7 +24,7 @@
 }
 
 .modalContent .close {
-  padding: 15px;
+  padding: 15px 20px 0 0;
   text-align: end;
   font-weight: bold;
   cursor: pointer;
@@ -35,19 +36,21 @@
 .modalContent .categoryContainer {
   display: none;
 }
+
+/*  GALLERY DES PROJETS */
 .modalContent .modalGallery {
   display: grid;
   width: auto;
-  margin: 40px;
+  margin: 0 70px;
+  padding: 30px 0;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 5px;
   grid-row-gap: 10px;
+  border-bottom: 1px black solid;
 }
-
 .modalContent img {
   width: 100%;
 }
-
 .modalGallery figure {
   position: relative;
 }
@@ -69,15 +72,26 @@
   right: 25px;
 }
 
-/* MODAL LOGIN ERREUR :  */
+.modalGallery figcaption {
+  font-size: 10px;
+  text-align: left;
+}
 
-.modalContent .okay {
+/* MODAL BUTTONS AND A */
+
+.modalContent button {
   font-weight: 700;
   color: white;
   background-color: #1d6154;
-  margin: 2em auto;
+  margin: 20px auto;
   width: 210px;
   height: 40px;
   text-align: center;
   border-radius: 60px;
+}
+
+.modalContent a {
+  color: red;
+  padding-bottom: 50px;
+  font-size: small;
 }
