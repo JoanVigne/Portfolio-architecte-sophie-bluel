@@ -1,3 +1,7 @@
+import { getWorks } from "../data/api.js";
+let works = [];
+
+// used in modal
 export async function deleteWork(id) {
   const user = sessionStorage.getItem("user");
   if (user === null) {
@@ -16,9 +20,14 @@ export async function deleteWork(id) {
     const result = await response.text();
     console.log(result);
   }
+  if (response.status === 204) {
+    const result = await response.text();
+    console.log(result);
+    works = await getWorks(works);
+  }
   if (response.status === 401) {
     console.log("Vous n'avez pas les droits pour supprimer des projets");
   } else {
-    console.log(`Request failed with status: ${response.status}`);
+    console.log(`Request status: ${response.status}`);
   }
 }

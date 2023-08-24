@@ -1,3 +1,9 @@
+import { deleteWork } from "../js/delete.js";
+import { getWorks } from "../data/api.js";
+import { displayWorks } from "./works.js";
+
+let works = [];
+
 const modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modalContent");
 let h3ModalContent = modalContent.querySelector("h3");
@@ -27,6 +33,7 @@ export function modifierProjetModalContent(works) {
     trash.addEventListener("click", (e) => {
       console.log(`Deleting work item named  `, work.title);
       console.log(`Deleting work item : `, work.id);
+      areYouSure(work.id);
     });
     // icone deplacer projet
     const move = document.createElement("span");
@@ -36,6 +43,30 @@ export function modifierProjetModalContent(works) {
     figure.append(figureImg, figCaption, trash, move);
     gallery.appendChild(figure);
   });
+}
+export function areYouSure(workId) {
+  modal.style.display = null;
+  modal.setAttribute("aria-hidden", "false");
+  let modalContent = document.querySelector(".modalContent");
+  let h3ModalContent = modalContent.querySelector("h3");
+  h3ModalContent.textContent = "Voulez vous vraiment suprrimer ce projet ?";
+  buttonModalContent.textContent = "Oui";
+  buttonModalContent.addEventListener("click", async () => {
+    console.log("oui");
+    await deleteWork(workId);
+    // enleve le projet de la gallery du modal modify et de la gallery
+    works = await getWorks(works);
+    modifierProjetModalContent(works);
+    displayWorks(works);
+  });
+  AModalContent.textContent = "Non";
+  AModalContent.addEventListener("click", async () => {
+    console.log("non");
+    // retour a la  modal gallery modify
+    works = await getWorks(works);
+    modifierProjetModalContent(works);
+  });
+  gallery.innerHTML = "";
 }
 
 // page login si mauvais email ou password
@@ -50,22 +81,6 @@ export function modalerreur(textError) {
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true");
   });
-}
-export function areYouSure() {
-  modal.style.display = null;
-  modal.setAttribute("aria-hidden", "false");
-  let modalContent = document.querySelector(".modalContent");
-  let h3ModalContent = modalContent.querySelector("h3");
-  h3ModalContent.textContent = "Voulez vous vraiment suprrimer ce projet ?";
-  buttonModalContent.textContent = "Oui";
-  buttonModalContent.addEventListener("click", () => {
-    console.log("oui");
-  });
-  AModalContent.textContent = "Non";
-  AModalContent.addEventListener("click", () => {
-    console.log("non");
-  });
-  gallery.innerHTML = "";
 }
 
 export function closeModal() {
