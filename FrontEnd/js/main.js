@@ -1,5 +1,5 @@
 import { getWorks, getCategories } from "../data/api.js";
-import { displayWorksModal } from "./modal.js";
+import { modifierProjetModalContent, closeModal } from "./modal.js";
 
 let works = [];
 let categories = [];
@@ -79,10 +79,9 @@ const modal = document.querySelector(".modal");
 const modifierProjets = document.querySelector("#modifierProjets");
 
 modifierProjets.addEventListener("click", () => {
-  modal.style.display = null;
-  modal.setAttribute("aria-hidden", "false");
-  displayWorksModal(works);
-  modalContent();
+  /*   modal.style.display = null;
+  modal.setAttribute("aria-hidden", "false"); */
+  modifierProjetModalContent(works);
 });
 
 modal.addEventListener("click", () => {
@@ -91,34 +90,27 @@ modal.addEventListener("click", () => {
   closeModal();
 });
 
-// fermer le modal
-
 // STOP PROPAGATION POUR CLICK OK SUR MODAL
 modal.querySelector(".modalContent").addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
-function modalContent() {
-  // changement du HTML
-  const modal = document.querySelector(".modal");
-  modal.setAttribute("aria-hidden", "true");
-  // fermer la modale avec la croix
-  let close = document.querySelector(".modalContent .close");
-  close.addEventListener("click", () => {
+// fermer les modals
+let close = document.querySelector(".modalContent .close");
+close.addEventListener("click", () => {
+  closeModal();
+});
+//  fermer au echap
+window.addEventListener("keydown", function (e) {
+  console.log("This key : ", e.key);
+  if (e.key === "Escape" || e.key === "Esc") {
     closeModal();
-  });
-  //  fermer au echap
-  window.addEventListener("keydown", function (e) {
-    console.log("This key : ", e.key);
-    if (e.key === "Escape" || e.key === "Esc") {
-      closeModal();
-    }
-  });
-}
+  }
+});
 
-function closeModal() {
+/* function closeModal() {
   const modal = document.querySelector(".modal");
   modal.style.display = "none";
   modal.setAttribute("aria-hidden", "true");
-  /*  displayWorks(works); */ // display les travaux dans la div "gallery"
-}
+
+} */

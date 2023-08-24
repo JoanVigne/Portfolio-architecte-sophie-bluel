@@ -30,6 +30,8 @@ loginForm.addEventListener("submit", (e) => login(e));
     .catch((err) => alert("ERROR: ", err));
 } */
 
+import { modalerreur, closeModal } from "../js/modal.js";
+
 async function login(e) {
   // evite le rechargement de la page
   e.preventDefault();
@@ -68,34 +70,23 @@ async function login(e) {
     .catch((err) => console.log("ERREUR : " + err));
 }
 
-// erreur modal
-const modalErreur = document.querySelector(".modal");
-
-function modalerreur(textError) {
-  modalErreur.style.display = null;
-  modalErreur.setAttribute("aria-hidden", "false");
-  const messageErreur = document.querySelector(".messageErreur");
-  messageErreur.textContent = textError;
-  const okay = document.querySelector(".okay");
-  okay.addEventListener("click", () => {
-    modalErreur.style.display = "none";
-    modalErreur.setAttribute("aria-hidden", "true");
-  });
-  window.addEventListener("keydown", function (e) {
-    console.log("This key : ", e.key);
-    if (e.key === "Escape" || e.key === "Esc") {
-      modalErreur.style.display = "none";
-      modalErreur.setAttribute("aria-hidden", "true");
-    }
-  });
-}
-
-modalErreur.addEventListener("click", () => {
-  modalErreur.style.display = "none";
-  modalErreur.setAttribute("aria-hidden", "true");
+// fermer les modals
+let close = document.querySelector(".modalContent .close");
+close.addEventListener("click", () => {
+  closeModal();
 });
-
+//  fermer au echap
+window.addEventListener("keydown", function (e) {
+  console.log("This key : ", e.key);
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeModal();
+  }
+});
+const modal = document.querySelector(".modal");
+modal.addEventListener("click", () => {
+  closeModal();
+});
 // STOP PROPAGATION POUR CLICK OK SUR MODAL
-modalErreur.querySelector(".modalContent").addEventListener("click", (e) => {
+modal.querySelector(".modalContent").addEventListener("click", (e) => {
   e.stopPropagation();
 });

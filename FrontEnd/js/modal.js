@@ -5,7 +5,7 @@ let buttonModalContent = modalContent.querySelector("button");
 let AModalContent = modalContent.querySelector("a");
 let gallery = document.querySelector(".modalGallery");
 
-export function displayWorksModal(works) {
+export function modifierProjetModalContent(works) {
   modal.style.display = null;
   modal.setAttribute("aria-hidden", "false");
   h3ModalContent.textContent = "Galerie photo";
@@ -27,10 +27,8 @@ export function displayWorksModal(works) {
     trash.addEventListener("click", (e) => {
       console.log(`Deleting work item named  `, work.title);
       console.log(`Deleting work item : `, work.id);
-      /*  delete works[work.id - 1];
-      displayWorksModal(works); */
     });
-    // deplacer projet icone
+    // icone deplacer projet
     const move = document.createElement("span");
     move.textContent = "open_with";
     move.classList.add("material-symbols-outlined", "move");
@@ -40,10 +38,38 @@ export function displayWorksModal(works) {
   });
 }
 
+// page login si mauvais email ou password
+export function modalerreur(textError) {
+  modal.style.display = null;
+  modal.setAttribute("aria-hidden", "false");
+  h3ModalContent.textContent = textError;
+  buttonModalContent.textContent = "Okay";
+  AModalContent.textContent = "";
+  gallery.innerHTML = "";
+  buttonModalContent.addEventListener("click", () => {
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+  });
+}
 export function areYouSure() {
   modal.style.display = null;
   modal.setAttribute("aria-hidden", "false");
   let modalContent = document.querySelector(".modalContent");
   let h3ModalContent = modalContent.querySelector("h3");
   h3ModalContent.textContent = "Voulez vous vraiment suprrimer ce projet ?";
+  buttonModalContent.textContent = "Oui";
+  buttonModalContent.addEventListener("click", () => {
+    console.log("oui");
+  });
+  AModalContent.textContent = "Non";
+  AModalContent.addEventListener("click", () => {
+    console.log("non");
+  });
+  gallery.innerHTML = "";
+}
+
+export function closeModal() {
+  const modal = document.querySelector(".modal");
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
 }
