@@ -4,19 +4,21 @@ export async function deleteWork(id) {
     console.log("user not found");
     return;
   }
-
   const token = JSON.parse(user).token;
 
-  await fetch(`http://localhost:5678/api/works/${id}`, {
+  const response = await fetch(`http://localhost:5678/api/works/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => res.json())
-    .then((res) => console.log(res))
-    .catch((error) => {
-      console.log(`Error: ${error}`);
-      console.error("There was an error!", error);
-    });
+  });
+  if (response.status === 200) {
+    const result = await response.text();
+    console.log(result);
+  }
+  if (response.status === 401) {
+    console.log("Vous n'avez pas les droits pour supprimer des projets");
+  } else {
+    console.log(`Request failed with status: ${response.status}`);
+  }
 }

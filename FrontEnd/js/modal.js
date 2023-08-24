@@ -1,22 +1,18 @@
+const modal = document.querySelector(".modal");
+let modalContent = document.querySelector(".modalContent");
+let h3ModalContent = modalContent.querySelector("h3");
+let buttonModalContent = modalContent.querySelector("button");
+let AModalContent = modalContent.querySelector("a");
+let gallery = document.querySelector(".modalGallery");
+
 export function displayWorksModal(works) {
-  let modalContent = document.querySelector(".modalContent");
-  let h3ModalContent = modalContent.querySelector("h3");
+  modal.style.display = null;
+  modal.setAttribute("aria-hidden", "false");
   h3ModalContent.textContent = "Galerie photo";
-  let gallery = document.querySelector(".modalGallery");
+  buttonModalContent.textContent = "Ajouter une photo";
+  AModalContent.textContent = "Supprimer la gallerie";
   gallery.innerHTML = "";
-  /*   works.forEach((work) => {
-    gallery.innerHTML += `<figure><img src="${work.imageUrl}" alt="${work.title}">
-          <figcaption>
-           éditer
-           </figcaption>
-           <span class="material-symbols-outlined trash">
-    delete
-    </span>
-    <span class="material-symbols-outlined move">
-    open_with
-    </span>
-           </figure>`;
-  }); */
+  // boucle pour display chaque travaux
   works.forEach((work) => {
     const figure = document.createElement("figure");
     const figureImg = document.createElement("img");
@@ -29,20 +25,24 @@ export function displayWorksModal(works) {
     trash.classList.add("material-symbols-outlined", "trash");
     // DELETE UN PROJET
     trash.addEventListener("click", (e) => {
-      console.log(`Deleting work item : `, work.title);
+      console.log(`Deleting work item named  `, work.title);
       console.log(`Deleting work item : `, work.id);
-      delete works[work.id - 1];
-      displayWorksModal(works);
+      /*  delete works[work.id - 1];
+      displayWorksModal(works); */
     });
+    // deplacer projet icone
     const move = document.createElement("span");
     move.textContent = "open_with";
     move.classList.add("material-symbols-outlined", "move");
+    //
     figure.append(figureImg, figCaption, trash, move);
     gallery.appendChild(figure);
   });
 }
 
 export function areYouSure() {
+  modal.style.display = null;
+  modal.setAttribute("aria-hidden", "false");
   let modalContent = document.querySelector(".modalContent");
   let h3ModalContent = modalContent.querySelector("h3");
   h3ModalContent.textContent = "Voulez vous vraiment suprrimer ce projet ?";

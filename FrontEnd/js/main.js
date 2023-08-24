@@ -120,5 +120,5 @@ function closeModal() {
   const modal = document.querySelector(".modal");
   modal.style.display = "none";
   modal.setAttribute("aria-hidden", "true");
-  displayWorks(works); // display les travaux dans les div "gallery"
+  /*  displayWorks(works); */ // display les travaux dans la div "gallery"
 }
