@@ -53,23 +53,34 @@ export function areYouSure(workId) {
   modal.setAttribute("aria-hidden", "false");
   let modalContent = document.querySelector(".modalContent");
   let h3ModalContent = modalContent.querySelector("h3");
-  h3ModalContent.textContent = "Voulez vous vraiment suprrimer ce projet ?";
+  h3ModalContent.textContent = "Voulez-vous vraiment supprimer ce projet ?";
   buttonModalContent.textContent = "Oui";
-  buttonModalContent.addEventListener("click", async () => {
+
+  async function yes() {
     console.log("oui");
     await deleteWork(workId);
-    // enleve le projet de la gallery du modal modify et de la gallery
+    // enlève le projet de la gallery du modal modify et de la gallery
+    buttonModalContent.removeEventListener("click", yes);
+    AModalContent.removeEventListener("click", no);
     works = await getWorks(works);
     modifierProjetModalContent(works);
     displayWorks(works);
-  });
-  AModalContent.textContent = "Non";
-  AModalContent.addEventListener("click", async () => {
+  }
+
+  buttonModalContent.addEventListener("click", yes);
+
+  async function no() {
     console.log("non");
-    // retour a la  modal gallery modify
+    // retour à la modal gallery modify
+    buttonModalContent.removeEventListener("click", yes);
+    AModalContent.removeEventListener("click", no);
     works = await getWorks(works);
     modifierProjetModalContent(works);
-  });
+  }
+
+  AModalContent.textContent = "Non";
+  AModalContent.addEventListener("click", no);
+
   gallery.innerHTML = "";
 }
 
