@@ -9,6 +9,7 @@ const modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modalContent");
 let backModalContent = modalContent.querySelector(".back");
 let h3ModalContent = modalContent.querySelector("h3");
+let formAjouter = document.querySelector(".formAjouter");
 let buttonModalContent = modalContent.querySelector("button");
 let AModalContent = modalContent.querySelector("a");
 let gallery = document.querySelector(".modalGallery");
@@ -18,6 +19,7 @@ export function modifierProjetModalContent(works) {
   modal.setAttribute("aria-hidden", "false");
   h3ModalContent.textContent = "Galerie photo";
   buttonModalContent.textContent = "Ajouter une photo";
+  buttonModalContent.addEventListener("click", ajouterPhotoModalContent);
   AModalContent.textContent = "Supprimer la gallerie";
   gallery.innerHTML = "";
   // boucle pour display chaque travaux
@@ -51,8 +53,8 @@ export function modifierProjetModalContent(works) {
 export function areYouSure(workId) {
   modal.style.display = null;
   modal.setAttribute("aria-hidden", "false");
-  let modalContent = document.querySelector(".modalContent");
-  let h3ModalContent = modalContent.querySelector("h3");
+  /*   let modalContent = document.querySelector(".modalContent"); */
+  /*   let h3ModalContent = modalContent.querySelector("h3"); */
   h3ModalContent.textContent = "Voulez-vous vraiment supprimer ce projet ?";
   buttonModalContent.textContent = "Oui";
 
@@ -62,23 +64,21 @@ export function areYouSure(workId) {
     // enlève le projet de la gallery du modal modify et de la gallery
     buttonModalContent.removeEventListener("click", yes);
     AModalContent.removeEventListener("click", no);
-    works = await getWorks(works);
+    works = await getWorks();
     modifierProjetModalContent(works);
     displayWorks(works);
   }
-
   buttonModalContent.addEventListener("click", yes);
 
+  AModalContent.textContent = "Non";
   async function no() {
     console.log("non");
     // retour à la modal gallery modify
     buttonModalContent.removeEventListener("click", yes);
     AModalContent.removeEventListener("click", no);
-    works = await getWorks(works);
+    works = await getWorks();
     modifierProjetModalContent(works);
   }
-
-  AModalContent.textContent = "Non";
   AModalContent.addEventListener("click", no);
 
   gallery.innerHTML = "";
@@ -98,54 +98,53 @@ export function modalerreur(textError) {
   });
 }
 
-function ajouterPhotoModalContent() {
+async function ajouterPhotoModalContent() {
   // creation du form :
-  let formAjouter = document.createElement("form");
-  let apercuPhoto = document.createElement("img");
-  let inputAjouterPhoto = document.createElement("input");
-  let infoPhoto = (document.createElement("p").innerText =
-    "jpg, png : 4mo max");
-  let labelTitre = (document.createElement("label").textContent = "Titre");
-  let inputTitre = document.createElement("input");
-  const getthem = async () => {
-    works = await getWorks(works);
-    getCategories(works);
-  };
-  getthem();
-  let labelCategorie = (document.createElement("label").textContent =
-    "Catégorie");
-  let selectCategorie = document.createElement("select");
+  formAjouter.style.display = "flex";
+  works = await getWorks();
+  categories = await getCategories();
+
+  // select
+  let selectCategorie = formAjouter.querySelector("select");
+  selectCategorie.innerHTML = "";
+  let option = document.createElement("option");
+  selectCategorie.append(option);
+  // boucle pour les categories
   categories.forEach((categorie) => {
     let option = document.createElement("option");
-    option.textContent = categorie;
+    option.textContent = categorie.name;
     option.setAttribute("value", categorie);
     selectCategorie.append(option);
   });
-  formAjouter.append(
-    apercuPhoto,
-    inputAjouterPhoto,
-    infoPhoto,
-    labelTitre,
-    inputTitre,
-    labelCategorie,
-    selectCategorie
-  );
-  // insertion du form
-  h3ModalContent.insertAdjacentElement("afterend", formAjouter);
 
+  // button back
   backModalContent.style.visibility = "visible";
   backModalContent.addEventListener("click", async () => {
-    works = await getWorks(works);
+    backModalContent.style.visibility = "hidden";
+    formAjouter.style.display = "none";
+    works = await getWorks();
     modifierProjetModalContent(works);
   });
+  //
   h3ModalContent.textContent = "Ajouter photo";
   gallery.innerHTML = "";
   buttonModalContent.textContent = "Valider";
   AModalContent.textContent = "";
+  // button close
+  let close = modal.querySelector(".close");
+  close.addEventListener("click", () => {
+    formAjouter.style.display = "none";
+  });
 }
 
 export function closeModal() {
   const modal = document.querySelector(".modal");
   modal.style.display = "none";
   modal.setAttribute("aria-hidden", "true");
+
+  // si ajouterPhoto =>
+  backModalContent.style.visibility = "hidden";
+  if (formAjouter !== null) {
+    formAjouter.style.display = "none";
+  }
 }

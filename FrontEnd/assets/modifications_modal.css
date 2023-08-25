@@ -19,7 +19,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 450px;
   max-width: calc(100vw - 20px);
-  min-height: calc(100vh - 50%);
+  min-height: calc(100vh - 80%);
   max-height: calc(100vh - 20px);
   text-align: center;
   font-size: larger;
@@ -31,6 +31,7 @@
 }
 .modalContent .back {
   visibility: hidden;
+  cursor: pointer;
 }
 .modalContent .close {
   text-align: end;
@@ -45,18 +46,68 @@
   display: none;
 }
 
+/* MODAL CONTENT FORM ajouter photo*/
+.modalContent .formAjouter {
+  display: none;
+  flex-direction: column;
+  margin: 20px 60px;
+}
+
+.modalContent .formAjouter .containerUploadPhoto {
+  min-width: 250px;
+  padding: 10px;
+  background-color: #e8f1f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modalContent .formAjouter .containerUploadPhoto .material-symbols-outlined {
+  color: #b9c5cc;
+  font-size: 72px;
+}
+.modalContent .formAjouter .containerUploadPhoto #labelAjouterPhoto {
+  cursor: pointer;
+  margin: 0 0 5px;
+  background-color: #cbd6dc;
+  color: #306685;
+  text-align: center;
+  width: 150px;
+  padding: 10px;
+  border-radius: 20px;
+}
+.modalContent .formAjouter .containerUploadPhoto small {
+  font-size: x-small;
+}
+
+.modalContent .formAjouter label {
+  text-align: left;
+  font-size: small;
+  margin: 15px 0 5px 2px;
+}
+.modalContent .formAjouter input,
+.modalContent .formAjouter select {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 30px;
+  min-width: 250px;
+  min-height: 10px;
+}
+
+.modalContent .formAjouter input[type="button"] {
+  width: 120px;
+}
+
 /*  GALLERY DES PROJETS */
 .modalContent .modalGallery {
   display: grid;
   width: auto;
   margin: 0 70px;
-  padding: 30px 0;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 5px;
   grid-row-gap: 10px;
-  border-bottom: 1px black solid;
 }
-.modalContent img {
+.modalContent .modalGallery img {
   width: 100%;
 }
 .modalGallery figure {
@@ -85,21 +136,26 @@
   text-align: left;
 }
 
+.modalContent .ligne {
+  margin: 15px auto;
+  width: 280px;
+  border-top: 1px black solid;
+}
 /* MODAL BUTTONS AND A */
 
 .modalContent button {
-  font-weight: 700;
+  font-weight: 500;
   color: white;
   background-color: #1d6154;
-  margin: 20px auto;
+  margin: 5px auto;
   width: 210px;
-  height: 40px;
+  height: 25px;
   text-align: center;
   border-radius: 60px;
 }
 
 .modalContent a {
   color: red;
-  padding-bottom: 50px;
+  padding: 10px 0 30px;
   font-size: small;
 }
