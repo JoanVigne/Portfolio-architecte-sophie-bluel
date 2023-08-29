@@ -44,6 +44,7 @@
         style="display: none"
         aria-hidden="true"
         role="dialog"
+        aria-modal="true"
       >
         <div class="modalContent">
           <div class="backAndClose">
@@ -71,6 +72,51 @@
           <div class="ligne"></div>
           <button></button>
           <a href="#"></a>
+        </div>
+      </aside>
+      <aside
+        class="modal2"
+        class="modal3"
+        style="display: none"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div class="modalContent">
+          <div class="backAndClose">
+            <span class="material-symbols-outlined back"> arrow_back </span>
+            <div class="close">x</div>
+          </div>
+
+          <h3>Ajouter photo</h3>
+          <!--  FORM DU MODAL QUI SE DISPLAY AU AJOUT DE PHOTO -->
+          <form action="POST" class="formAjouter">
+            <div class="containerUploadPhoto">
+              <span class="material-symbols-outlined"> imagesmode </span>
+              <input type="file" name="photo" id="ajouterPhoto" hidden />
+              <label for="ajouterPhoto" id="labelAjouterPhoto"
+                >+ Ajouter photo</label
+              >
+              <small>jpg, png : 4mo max</small>
+            </div>
+            <label for="titre">Titre</label>
+            <input type="text" name="titre" />
+            <label for="categorie">Catégorie</label>
+            <select name="categorie"></select>
+          </form>
+        </div>
+      </aside>
+      <aside
+        class="modal3"
+        style="display: none"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div class="modalContent">
+          <h3>Voulez-vous vraiment supprimer ce projet ?</h3>
+          <button>Oui</button>
+          <button>Non</button>
         </div>
       </aside>
       <section id="introduction">

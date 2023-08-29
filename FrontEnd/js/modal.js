@@ -86,15 +86,13 @@ export function areYouSure(workId) {
 
 // page login si mauvais email ou password
 export function modalerreur(textError) {
-  modal.style.display = null;
-  modal.setAttribute("aria-hidden", "false");
+  const modalErreur = document.querySelector(".modal4");
+  modalErreur.style.display = null;
+  modalErreur.setAttribute("aria-hidden", "false");
   h3ModalContent.textContent = textError;
-  buttonModalContent.textContent = "Okay";
-  AModalContent.textContent = "";
-  gallery.innerHTML = "";
   buttonModalContent.addEventListener("click", () => {
-    modal.style.display = "none";
-    modal.setAttribute("aria-hidden", "true");
+    modalErreur.style.display = "none";
+    modalErreur.setAttribute("aria-hidden", "true");
   });
 }
 

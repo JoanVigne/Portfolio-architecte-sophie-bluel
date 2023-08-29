@@ -8,7 +8,6 @@ let categories = [];
 const init = async () => {
   works = await getWorks();
   categories = await getCategories();
-
   displayWorks(works); // display les travaux dans les div "gallery"
   displayCategories(categories); // display les categories
   connected(); // user connected ? display la modification

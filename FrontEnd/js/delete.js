@@ -23,7 +23,7 @@ export async function deleteWork(id) {
   if (response.status === 204) {
     const result = await response.text();
     console.log(result);
-    works = await getWorks(works);
+    /* works = await getWorks(works); */
   }
   if (response.status === 401) {
     console.log("Vous n'avez pas les droits pour supprimer des projets");
