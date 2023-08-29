@@ -40,7 +40,7 @@
     <main>
       <!-- MODAL QUI S OUVRE AU CLICK SUR MODIFIER PROJETS -->
       <aside
-        class="modal"
+        class="modal1 modal"
         style="display: none"
         aria-hidden="true"
         role="dialog"
@@ -52,9 +52,9 @@
             <div class="close">x</div>
           </div>
 
-          <h3></h3>
+          <h3>Galerie photo</h3>
           <!--  FORM DU MODAL QUI SE DISPLAY AU AJOUT DE PHOTO -->
-          <form action="POST" class="formAjouter">
+          <!-- <form action="POST" class="formAjouter">
             <div class="containerUploadPhoto">
               <span class="material-symbols-outlined"> imagesmode </span>
               <input type="file" name="photo" id="ajouterPhoto" hidden />
@@ -67,16 +67,15 @@
             <input type="text" name="titre" />
             <label for="categorie">Catégorie</label>
             <select name="categorie"></select>
-          </form>
+          </form> -->
           <div class="modalGallery"></div>
           <div class="ligne"></div>
-          <button></button>
-          <a href="#"></a>
+          <button>Ajouter une photo</button>
+          <a href="#">Supprimer la galerie</a>
         </div>
       </aside>
       <aside
-        class="modal2"
-        class="modal3"
+        class="modal2 modal"
         style="display: none"
         aria-hidden="true"
         role="dialog"
@@ -103,11 +102,13 @@
             <input type="text" name="titre" />
             <label for="categorie">Catégorie</label>
             <select name="categorie"></select>
+            <div class="ligne"></div>
+            <input type="submit" value="Valider" />
           </form>
         </div>
       </aside>
       <aside
-        class="modal3"
+        class="modal3 modal"
         style="display: none"
         aria-hidden="true"
         role="dialog"

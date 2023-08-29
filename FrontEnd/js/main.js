@@ -32,14 +32,25 @@ function displayModify() {
 // MODAL
 
 // mode edition
-const modal = document.querySelector(".modal");
-
 const modifierProjets = document.querySelector("#modifierProjets");
-
 modifierProjets.addEventListener("click", () => {
   modifierProjetModalContent(works);
 });
 
+const modals = document.querySelectorAll(".modal");
+
+modals.forEach((modal) => {
+  // EVENT SUR CHAQUES MODALS
+  modal.addEventListener("click", () => {
+    closeModal();
+  });
+  // STOP PROPAGATION POUR CLICK OK SUR TOUS LES MODALS
+  modal.querySelector(".modalContent").addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+});
+
+/* const modal = document.querySelector(".modal");
 modal.addEventListener("click", () => {
   closeModal();
 });
@@ -48,12 +59,20 @@ modal.addEventListener("click", () => {
 modal.querySelector(".modalContent").addEventListener("click", (e) => {
   e.stopPropagation();
 });
-
+ */
 // fermer les modals
-let close = document.querySelector(".modalContent .close");
+
+/* let closes = document.querySelectorAll(".modalContent .close");
+closes.forEach((close) => {
+  close.addEventListener("click", () => {
+    closeModal();
+  });
+}); */
+
+/* let close = document.querySelector(".modalContent .close");
 close.addEventListener("click", () => {
   closeModal();
-});
+}); */
 //  fermer au echap
 window.addEventListener("keydown", function (e) {
   console.log("This key : ", e.key);

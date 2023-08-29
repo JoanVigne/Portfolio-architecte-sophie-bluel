@@ -48,7 +48,7 @@
 
 /* MODAL CONTENT FORM ajouter photo*/
 .modalContent .formAjouter {
-  display: none;
+  display: flex;
   flex-direction: column;
   margin: 20px 60px;
 }
@@ -96,6 +96,10 @@
 
 .modalContent .formAjouter input[type="button"] {
   width: 120px;
+}
+
+.modalContent .formAjouter input[type="submit"] {
+  background-color: #a7a7a7;
 }
 
 /*  GALLERY DES PROJETS */
