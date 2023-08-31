@@ -92,16 +92,22 @@
           <form action="POST" class="formAjouter">
             <div class="containerUploadPhoto">
               <span class="material-symbols-outlined"> imagesmode </span>
-              <input type="file" name="photo" id="ajouterPhoto" hidden />
+              <input
+                type="file"
+                name="photo"
+                id="ajouterPhoto"
+                hidden
+                required
+              />
               <label for="ajouterPhoto" id="labelAjouterPhoto"
                 >+ Ajouter photo</label
               >
               <small>jpg, png : 4mo max</small>
             </div>
             <label for="titre">Titre</label>
-            <input type="text" name="titre" />
+            <input type="text" name="titre" required />
             <label for="categorie">Catégorie</label>
-            <select name="categorie"></select>
+            <select name="categorie" required></select>
             <div class="ligne"></div>
             <input type="submit" value="Valider" />
           </form>

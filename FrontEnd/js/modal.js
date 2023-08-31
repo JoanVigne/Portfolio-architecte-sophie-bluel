@@ -106,7 +106,7 @@ async function ajouterPhotoModalContent() {
   categories.forEach((categorie) => {
     let option = document.createElement("option");
     option.textContent = categorie.name;
-    option.setAttribute("value", categorie);
+    option.setAttribute("value", categorie.name);
     selectCategorie.append(option);
   });
 
