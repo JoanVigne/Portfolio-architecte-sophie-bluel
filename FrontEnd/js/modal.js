@@ -96,9 +96,32 @@ async function ajouterPhotoModalContent() {
   let formAjouter = modalAjouter.querySelector("form");
   works = await getWorks();
   categories = await getCategories();
+  // event sur les inputs
+  let imgInput = formAjouter.querySelector("#ajouterPhoto");
+  imgInput.addEventListener("change", (e) => {
+    if (imgInput !== null) {
+      let selectedFile = imgInput.files[0];
+      console.log("il y a une image ici");
+      console.log("name : ", selectedFile.name);
+      console.log("type : ", selectedFile.type);
+    }
+  });
+
+  let titleInput = formAjouter.querySelector("#title");
+  titleInput.addEventListener("blur", (e) => {
+    if (titleInput.value !== "") {
+      console.log("le titre : ", titleInput.value);
+    }
+  });
 
   // select
   let selectCategorie = formAjouter.querySelector("select");
+  selectCategorie.addEventListener("change", (e) => {
+    // savoir si une option du select a été choisi
+    if (selectCategorie.value !== "") {
+      console.log("le select est different de rien");
+    }
+  });
   selectCategorie.innerHTML = "";
   let option = document.createElement("option");
   selectCategorie.append(option);
@@ -106,7 +129,8 @@ async function ajouterPhotoModalContent() {
   categories.forEach((categorie) => {
     let option = document.createElement("option");
     option.textContent = categorie.name;
-    option.setAttribute("value", categorie.name);
+    // categorie.id pour BD car id est inchangeable
+    option.setAttribute("value", categorie.id);
     selectCategorie.append(option);
   });
 
