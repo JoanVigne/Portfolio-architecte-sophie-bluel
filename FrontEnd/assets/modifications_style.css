@@ -60,13 +60,12 @@ a:hover {
   display: none;
 }
 /* CATEGORY BUTTONS */
-.categoryContainer {
+.filtres {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
 }
 
-.categoryContainer button {
+.filtres button {
   cursor: pointer;
   font-family: "Syne";
   background-color: rgba(29, 97, 84, 0);
@@ -79,16 +78,19 @@ a:hover {
   transition: background-color 0.7s ease, color 0.3s ease;
 }
 
-.categoryContainer button:hover {
+.filtres button:hover {
   background-color: var(--green);
   color: floralwhite;
 }
 
-.categoryContainer button:focus {
+.filtres button:focus {
   background-color: var(--green);
   color: floralwhite;
 }
 /* END CATEGORY BUTTONS */
+.gallery {
+  margin-top: 40px;
+}
 .titreEtModifier {
   margin: 20px;
   display: flex;

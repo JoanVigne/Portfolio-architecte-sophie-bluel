@@ -14,19 +14,38 @@ const init = async () => {
 };
 init();
 
+// est ce que user est connecté ?
 function connected() {
   let user = sessionStorage.getItem("user");
-  user && JSON.parse(user).userId === 1 && displayModify();
+  user && JSON.parse(user).userId === 1 && adminMode();
 }
-
-function displayModify() {
+// si oui, admin mode
+function adminMode() {
   const container = document.querySelector(".containerEdit");
   container.classList.add("displayed");
+
+  // pour se deconnecter
+  const log = document.querySelector("#log");
+  log.innerHTML = "log-out";
+  log.setAttribute("href", "#");
+  log.addEventListener("click", () => {
+    sessionStorage.setItem("user", "");
+    window.location.href = "http://localhost:8080/index.html";
+  });
 
   const modifierButtons = document.querySelectorAll(".modifier");
   modifierButtons.forEach((button) => {
     button.style.display = "block";
   });
+
+  // disparition des filtres
+  const filtres = document.querySelector(".filtres");
+  filtres.style.display = "none";
+}
+// si projet ajout successfull :
+export function projetAjoute(e) {
+  console.log("projet ajouté !", JSON.parse(e));
+  console.log(works);
 }
 
 // MODAL
@@ -50,29 +69,6 @@ modals.forEach((modal) => {
   });
 });
 
-/* const modal = document.querySelector(".modal");
-modal.addEventListener("click", () => {
-  closeModal();
-});
-
-// STOP PROPAGATION POUR CLICK OK SUR MODAL
-modal.querySelector(".modalContent").addEventListener("click", (e) => {
-  e.stopPropagation();
-});
- */
-// fermer les modals
-
-/* let closes = document.querySelectorAll(".modalContent .close");
-closes.forEach((close) => {
-  close.addEventListener("click", () => {
-    closeModal();
-  });
-}); */
-
-/* let close = document.querySelector(".modalContent .close");
-close.addEventListener("click", () => {
-  closeModal();
-}); */
 //  fermer au echap
 window.addEventListener("keydown", function (e) {
   console.log("This key : ", e.key);

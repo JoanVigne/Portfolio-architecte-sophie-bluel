@@ -1,6 +1,7 @@
 import { deleteWork } from "../js/delete.js";
 import { getWorks, getCategories } from "../data/api.js";
 import { displayWorks } from "./works.js";
+import { verifierSiFormEstComplete, submitForm } from "./add.js";
 
 let works = [];
 let categories = [];
@@ -63,7 +64,13 @@ export function areYouSure(workId) {
   buttonOui.addEventListener("click", yes);
   async function yes() {
     await deleteWork(workId);
-    works = await getWorks();
+    const nouveauxWorks = works.filter((work) => {
+      // si l'id est differente, on le garde.
+      work.id !== id;
+    });
+    works = nouveauxWorks;
+    // appel serveur pas forcement utile
+    /* works = await getWorks(); */
     modifierProjetModalContent(works);
     displayWorks(works);
     modalAreYouSure.style.display = "none";
@@ -89,6 +96,8 @@ export function modalerreur(textError) {
   });
 }
 
+// pour enlever la photo preview quand on quitte le modal
+
 async function ajouterPhotoModalContent() {
   const modalAjouter = document.querySelector(".modal2");
   modalAjouter.style.display = null;
@@ -100,17 +109,28 @@ async function ajouterPhotoModalContent() {
   let imgInput = formAjouter.querySelector("#ajouterPhoto");
   imgInput.addEventListener("change", (e) => {
     if (imgInput !== null) {
-      let selectedFile = imgInput.files[0];
-      console.log("il y a une image ici");
-      console.log("name : ", selectedFile.name);
-      console.log("type : ", selectedFile.type);
+      verifierSiFormEstComplete();
+      // url img preview
+      const temporaryUrl = URL.createObjectURL(imgInput.files[0]);
+      //! display img preview et incorporé l'url
+      console.log("temporary url : ", temporaryUrl);
+      let previewPhoto = formAjouter.querySelector(".previewPhoto");
+      previewPhoto.classList.remove("hiddenPreviewPhoto");
+      previewPhoto.setAttribute("src", temporaryUrl);
+      let spanLogo = formAjouter.querySelector(".material-symbols-outlined");
+      let labelAjouterPhoto = formAjouter.querySelector("#labelAjouterPhoto");
+      let smallMax = formAjouter.querySelector("small");
+      spanLogo.style.display = "none";
+      labelAjouterPhoto.style.display = "none";
+      smallMax.style.display = "none";
     }
   });
 
   let titleInput = formAjouter.querySelector("#title");
-  titleInput.addEventListener("blur", (e) => {
-    if (titleInput.value !== "") {
+  titleInput.addEventListener("change", (e) => {
+    if (titleInput.value !== null) {
       console.log("le titre : ", titleInput.value);
+      verifierSiFormEstComplete();
     }
   });
 
@@ -119,6 +139,7 @@ async function ajouterPhotoModalContent() {
   selectCategorie.addEventListener("change", (e) => {
     // savoir si une option du select a été choisi
     if (selectCategorie.value !== "") {
+      verifierSiFormEstComplete();
       console.log("le select est different de rien");
     }
   });
@@ -144,18 +165,14 @@ async function ajouterPhotoModalContent() {
     works = await getWorks();
     modifierProjetModalContent(works);
   });
-  //
-  /* let buttonValider = modalAjouter.querySelector("button");
-  buttonValider.addEventListener("submit", (e) => {
-    e.preventDefault;
-    console.log("form valider");
-  }); */
+  // submit le form
+  let form = modalAjouter.querySelector("form");
+  form.addEventListener("submit", submitForm);
 
   // button close
   let close = modalAjouter.querySelector(".close");
   close.addEventListener("click", () => {
-    modalAjouter.style.display = "none";
-    modalAjouter.setAttribute("aria-hidden", "true");
+    closeModal();
   });
 }
 
@@ -165,4 +182,14 @@ export function closeModal() {
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true");
   });
+  // si on est dans le form ajouter photo :
+  let previewPhoto = formAjouter.querySelector(".previewPhoto");
+  previewPhoto.classList.add("hiddenPreviewPhoto");
+  previewPhoto.setAttribute("src", "");
+  let spanLogo = formAjouter.querySelector(".material-symbols-outlined");
+  let labelAjouterPhoto = formAjouter.querySelector("#labelAjouterPhoto");
+  let smallMax = formAjouter.querySelector("small");
+  spanLogo.style.display = "";
+  labelAjouterPhoto.style.display = "";
+  smallMax.style.display = "";
 }

@@ -32,7 +32,7 @@
         <ul>
           <li><a href="#portfolio">projets</a></li>
           <li>contact</li>
-          <li><a href="./login.html">login</a></li>
+          <li><a href="./login.html" id="log">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -59,12 +59,14 @@
           <a href="#">Supprimer la galerie</a>
         </div>
       </aside>
+      <!--  Pour l'accecibilité, je lie le titre du modal -->
       <aside
         class="modal2 modal"
         style="display: none"
         aria-hidden="true"
         role="dialog"
         aria-modal="true"
+        aria-describedby="titleModal2"
       >
         <div class="modalContent">
           <div class="backAndClose">
@@ -72,10 +74,15 @@
             <div class="close">x</div>
           </div>
 
-          <h3>Ajouter photo</h3>
+          <h3 id="titleModal2">Ajouter photo</h3>
           <!--  FORM DU MODAL QUI SE DISPLAY AU AJOUT DE PHOTO -->
           <form action="POST" class="formAjouter">
             <div class="containerUploadPhoto">
+              <img
+                src=""
+                alt="preview photo"
+                class="previewPhoto hiddenPreviewPhoto"
+              />
               <span class="material-symbols-outlined"> imagesmode </span>
               <input
                 type="file"
@@ -94,7 +101,7 @@
             <label for="category">Catégorie</label>
             <select id="category" name="category" required></select>
             <div class="ligne"></div>
-            <input type="submit" value="Valider" />
+            <input type="submit" value="Valider" class="incomplet" />
           </form>
         </div>
       </aside>

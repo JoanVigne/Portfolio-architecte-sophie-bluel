@@ -15,9 +15,9 @@ export function displayWorks(works) {
 }
 
 export function displayCategories(categories) {
-  let categoryContainer = document.createElement("div");
-  categoryContainer.classList.add("categoryContainer");
-  gallery.before(categoryContainer);
+  let filtres = document.createElement("div");
+  filtres.classList.add("filtres");
+  gallery.before(filtres);
   // creation button "TOUS"
   let buttonTous = document.createElement("button");
   buttonTous.innerText = "Tous";
@@ -25,13 +25,13 @@ export function displayCategories(categories) {
     works = await getWorks(works);
     displayWorks(works);
   });
-  categoryContainer.appendChild(buttonTous);
+  filtres.appendChild(buttonTous);
   // boucle pour les autres buttons
   categories.forEach((category) => {
     let button = document.createElement("button");
     button.innerHTML = category.name;
     button.addEventListener("click", (button) => categoryClicked(button));
-    categoryContainer.appendChild(button);
+    filtres.appendChild(button);
   });
 }
 
