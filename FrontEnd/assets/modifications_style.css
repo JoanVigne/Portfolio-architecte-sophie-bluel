@@ -20,7 +20,7 @@ main {
 }
 
 section {
-  margin: 50px 50px;
+  margin: 80px 50px;
 }
 
 a {
@@ -89,10 +89,10 @@ a:hover {
 }
 /* END CATEGORY BUTTONS */
 .gallery {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 .titreEtModifier {
-  margin: 20px;
+  margin: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,4 +108,21 @@ footer {
   background-color: white;
   display: flex;
   flex-direction: row-reverse;
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header nav ul {
+    justify-content: center;
+  }
+  .gallery {
+    grid-template-columns: none;
+  }
+  .filtres {
+    flex-wrap: wrap;
+  }
 }

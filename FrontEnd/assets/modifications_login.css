@@ -1,6 +1,6 @@
 .login {
   width: 35%;
-  margin: 200px auto;
+  margin: 160px auto;
 }
 
 .login > * {
@@ -38,4 +38,10 @@
 
 .login a {
   margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .login {
+    width: 80%;
+  }
 }
