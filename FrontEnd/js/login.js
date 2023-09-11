@@ -1,7 +1,7 @@
+import { modalerreur, closeModal } from "../js/modal.js";
+
 const loginForm = document.querySelector("form");
 loginForm.addEventListener("submit", (e) => login(e));
-
-import { modalerreur, closeModal } from "../js/modal.js";
 
 async function login(e) {
   // evite le rechargement de la page
@@ -48,7 +48,6 @@ close.addEventListener("click", () => {
 });
 //  fermer au echap
 window.addEventListener("keydown", function (e) {
-  console.log("This key : ", e.key);
   if (e.key === "Escape" || e.key === "Esc") {
     closeModal();
   }

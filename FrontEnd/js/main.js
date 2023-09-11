@@ -10,20 +10,27 @@ const init = async () => {
   categories = await getCategories();
   displayWorks(works); // display les travaux dans les div "gallery"
   displayCategories(categories); // display les categories
-  connected(); // user connected ? display la modification
+  let user = sessionStorage.getItem("user");
+  if (user) {
+    let userParsed = JSON.parse(user);
+    if (userParsed.userId === 1) {
+      adminMode();
+    }
+  }
 };
 init();
-
-// est ce que user est connecté ?
-function connected() {
-  let user = sessionStorage.getItem("user");
-  user && JSON.parse(user).userId === 1 && adminMode();
-}
-// si oui, admin mode
 function adminMode() {
+  // disparition filtre de la gallery
+  const filtres = document.querySelector(".filtres");
+  filtres.style.display = "none";
+
   const container = document.querySelector(".containerEdit");
   container.classList.add("displayed");
 
+  const modifierProjets = document.querySelector("#modifierProjets");
+  modifierProjets.addEventListener("click", () => {
+    modifierProjetModalContent(works, categories);
+  });
   // pour se deconnecter
   const log = document.querySelector("#log");
   log.innerHTML = "log-out";
@@ -31,30 +38,38 @@ function adminMode() {
   log.addEventListener("click", () => {
     sessionStorage.setItem("user", "");
     window.location.href = "http://localhost:8080/index.html";
+    filtres.style.display = "flex";
   });
 
   const modifierButtons = document.querySelectorAll(".modifier");
   modifierButtons.forEach((button) => {
     button.style.display = "block";
   });
-
-  // disparition des filtres
-  const filtres = document.querySelector(".filtres");
-  filtres.style.display = "none";
 }
+
 // si projet ajout successfull :
 export function projetAjoute(e) {
-  console.log("projet ajouté !", JSON.parse(e));
-  console.log(works);
+  let thisWork = JSON.parse(e);
+  // le categoryId est un string, pour pouvoir utiliser les filtres, besoin convertion en nombre
+  thisWork.categoryId = parseInt(thisWork.categoryId);
+  works.push(thisWork);
+  console.log("la var works a ete mis a jour : ", works);
+  displayWorks(works);
+}
+
+export function projetSupprime(id) {
+  const nouveauxWorks = works.filter((work) => {
+    // si l'id est different, on le garde.
+    return work.id !== id;
+  });
+  works = nouveauxWorks;
+  displayWorks(works);
+  modifierProjetModalContent(works, categories);
 }
 
 // MODAL
 
 // mode edition
-const modifierProjets = document.querySelector("#modifierProjets");
-modifierProjets.addEventListener("click", () => {
-  modifierProjetModalContent(works);
-});
 
 const modals = document.querySelectorAll(".modal");
 
@@ -71,7 +86,6 @@ modals.forEach((modal) => {
 
 //  fermer au echap
 window.addEventListener("keydown", function (e) {
-  console.log("This key : ", e.key);
   if (e.key === "Escape" || e.key === "Esc") {
     closeModal();
   }

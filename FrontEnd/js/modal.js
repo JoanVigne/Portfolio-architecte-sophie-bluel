@@ -3,8 +3,8 @@ import { getWorks, getCategories } from "../data/api.js";
 import { displayWorks } from "./works.js";
 import { verifierSiFormEstComplete, submitForm } from "./add.js";
 
-let works = [];
-let categories = [];
+/* let works = [];
+let categories = []; */
 
 const modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modalContent");
@@ -15,12 +15,14 @@ let buttonModalContent = modalContent.querySelector("button");
 let AModalContent = modalContent.querySelector("a");
 let gallery = document.querySelector(".modalGallery");
 
-export function modifierProjetModalContent(works) {
+export function modifierProjetModalContent(works, categories) {
   const modalModifier = document.querySelector(".modal1");
   modalModifier.style.display = null;
   modalModifier.setAttribute("aria-hidden", "false");
   let buttonAjouterPhoto = modalContent.querySelector("button");
-  buttonAjouterPhoto.addEventListener("click", ajouterPhotoModalContent);
+  buttonAjouterPhoto.addEventListener("click", (works) =>
+    ajouterPhotoModalContent(works, categories)
+  );
   let gallery = document.querySelector(".modalGallery");
   gallery.innerHTML = "";
   // boucle pour display chaque travaux
@@ -64,17 +66,6 @@ export function areYouSure(workId) {
   buttonOui.addEventListener("click", yes);
   async function yes() {
     await deleteWork(workId);
-    const nouveauxWorks = works.filter((work) => {
-      // si l'id est differente, on le garde.
-      work.id !== id;
-    });
-    works = nouveauxWorks;
-    // appel serveur pas forcement utile
-    /* works = await getWorks(); */
-    modifierProjetModalContent(works);
-    displayWorks(works);
-    modalAreYouSure.style.display = "none";
-    modalAreYouSure.setAttribute("aria-hidden", "true");
   }
   const buttonNon = modalAreYouSure.querySelectorAll("button")[1];
   buttonNon.addEventListener("click", no);
@@ -98,13 +89,13 @@ export function modalerreur(textError) {
 
 // pour enlever la photo preview quand on quitte le modal
 
-async function ajouterPhotoModalContent() {
+async function ajouterPhotoModalContent(works, categories) {
   const modalAjouter = document.querySelector(".modal2");
   modalAjouter.style.display = null;
   modalAjouter.setAttribute("aria-hidden", "false");
   let formAjouter = modalAjouter.querySelector("form");
-  works = await getWorks();
-  categories = await getCategories();
+  /*   works = await getWorks();
+  categories = await getCategories(); */
   // event sur les inputs
   let imgInput = formAjouter.querySelector("#ajouterPhoto");
   imgInput.addEventListener("change", (e) => {
@@ -112,7 +103,7 @@ async function ajouterPhotoModalContent() {
       verifierSiFormEstComplete();
       // url img preview
       const temporaryUrl = URL.createObjectURL(imgInput.files[0]);
-      //! display img preview et incorporé l'url
+      // display img preview et incorporé l'url
       console.log("temporary url : ", temporaryUrl);
       let previewPhoto = formAjouter.querySelector(".previewPhoto");
       previewPhoto.classList.remove("hiddenPreviewPhoto");
@@ -182,7 +173,7 @@ export function closeModal() {
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true");
   });
-  // si on est dans le form ajouter photo :
+  // si on est dans le form ajouter projet :
   let previewPhoto = formAjouter.querySelector(".previewPhoto");
   previewPhoto.classList.add("hiddenPreviewPhoto");
   previewPhoto.setAttribute("src", "");

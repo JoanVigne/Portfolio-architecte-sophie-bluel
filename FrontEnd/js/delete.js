@@ -1,5 +1,6 @@
-import { getWorks } from "../data/api.js";
-let works = [];
+import { projetSupprime } from "./main.js";
+import { closeModal, modifierProjetModalContent } from "./modal.js";
+import { displayWorks } from "./works.js";
 
 // used in modal
 export async function deleteWork(id) {
@@ -21,9 +22,9 @@ export async function deleteWork(id) {
     console.log(result);
   }
   if (response.status === 204) {
-    const result = await response.text();
-    console.log(result);
     /* works = await getWorks(works); */
+    closeModal();
+    projetSupprime(id);
   }
   if (response.status === 401) {
     console.log("Vous n'avez pas les droits pour supprimer des projets");

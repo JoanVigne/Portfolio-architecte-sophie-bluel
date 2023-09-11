@@ -32,6 +32,8 @@ export async function submitForm(e) {
   const authToken = JSON.parse(user).token;
 
   const formData = new FormData(e.target);
+  const categoryId = parseInt(formData.get("category"));
+  formData.set("category", categoryId);
 
   for (const [key, value] of formData.entries()) {
     console.log(key, value);
