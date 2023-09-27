@@ -50,7 +50,6 @@ export async function submitForm(e) {
   // response created
   if (response.status === 201) {
     const result = await response.text();
-    console.log(result);
     closeModal();
     projetAjoute(result);
   }

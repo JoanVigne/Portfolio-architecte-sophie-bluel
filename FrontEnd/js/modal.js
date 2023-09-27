@@ -31,8 +31,6 @@ export function modifierProjetModalContent(works, categories) {
     trash.classList.add("material-symbols-outlined", "trash");
     // DELETE UN PROJET
     trash.addEventListener("click", (e) => {
-      console.log(`Deleting work item named  `, work.title);
-      console.log(`Deleting work item : `, work.id);
       areYouSure(work.id);
     });
     // icone deplacer projet non fonctionnelle POUR LE MOMENT ??????
@@ -97,7 +95,6 @@ async function ajouterPhotoModalContent(works, categories) {
       // url img preview
       const temporaryUrl = URL.createObjectURL(imgInput.files[0]);
       // display img preview et incorporé l'url
-      console.log("temporary url : ", temporaryUrl);
       let previewPhoto = formAjouter.querySelector(".previewPhoto");
       previewPhoto.classList.remove("hiddenPreviewPhoto");
       previewPhoto.setAttribute("src", temporaryUrl);
@@ -113,7 +110,6 @@ async function ajouterPhotoModalContent(works, categories) {
   let titleInput = formAjouter.querySelector("#title");
   titleInput.addEventListener("change", (e) => {
     if (titleInput.value !== null) {
-      console.log("le titre : ", titleInput.value);
       verifierSiFormEstComplete();
     }
   });
@@ -124,7 +120,6 @@ async function ajouterPhotoModalContent(works, categories) {
     // savoir si une option du select a été choisi
     if (selectCategorie.value !== "") {
       verifierSiFormEstComplete();
-      console.log("le select est different de rien");
     }
   });
   selectCategorie.innerHTML = "";

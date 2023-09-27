@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="./assets/modifications_modal.css" />
   </head>
   <body>
-    <!-- CONTAINER EDIT QUAND SOPHIE SE CONNECTE -->
+    <!-- HEADER NOIR TOUT EN HAUT QUAND SOPHIE EST CONNECTEE -->
     <div class="containerEdit">
       <span class="material-symbols-outlined"> edit_square </span>
       <h3>Mode édition</h3>
@@ -38,13 +38,14 @@
       </nav>
     </header>
     <main>
-      <!-- MODAL QUI S OUVRE AU CLICK SUR MODIFIER PROJETS -->
+      <!-- MODAL 1 QUI S OUVRE AU CLICK SUR MODIFIER PROJETS -->
       <aside
         class="modal1 modal"
         style="display: none"
         aria-hidden="true"
         role="dialog"
         aria-modal="true"
+        aria-describedby="titleModal1"
       >
         <div class="modalContent">
           <div class="backAndClose">
@@ -52,14 +53,14 @@
             <div class="close">x</div>
           </div>
 
-          <h3>Galerie photo</h3>
+          <h3 class="titleModal1">Galerie photo</h3>
           <div class="modalGallery"></div>
           <div class="ligne"></div>
           <button>Ajouter une photo</button>
           <a href="#">Supprimer la galerie</a>
         </div>
       </aside>
-      <!--  Pour l'accecibilité, je lie le titre du modal -->
+      <!--   MODAL 2 AJOUTER PHOTO -->
       <aside
         class="modal2 modal"
         style="display: none"
@@ -75,7 +76,6 @@
           </div>
 
           <h3 id="titleModal2">Ajouter photo</h3>
-          <!--  FORM DU MODAL QUI SE DISPLAY AU AJOUT DE PHOTO -->
           <form action="POST" class="formAjouter">
             <div class="containerUploadPhoto">
               <img
@@ -105,15 +105,19 @@
           </form>
         </div>
       </aside>
+      <!--   MODAL 3 CONFIRMATION SUPPRESSION -->
       <aside
         class="modal3 modal"
         style="display: none"
         aria-hidden="true"
         role="dialog"
         aria-modal="true"
+        aria-describedby="titleModal3"
       >
         <div class="modalContent">
-          <h3>Voulez-vous vraiment supprimer ce projet ?</h3>
+          <h3 class="titleModal3">
+            Voulez-vous vraiment supprimer ce projet ?
+          </h3>
           <button>Oui</button>
           <button>Non</button>
         </div>
@@ -144,7 +148,7 @@
       </section>
 
       <section id="portfolio">
-        <!-- BUTTON MODIFIER PROJETS QUAND SOPHIE SE CONNECTE -->
+        <!-- BUTTON MODIFIER PROJETS QUAND SOPHIE EST CONNECTEE -->
         <div class="titreEtModifier">
           <h2>Mes Projets</h2>
           <a class="modifier" id="modifierProjets" href="#"

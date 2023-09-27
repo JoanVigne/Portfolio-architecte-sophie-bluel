@@ -55,7 +55,6 @@ export function projetAjoute(e) {
   // le categoryId est un string, pour pouvoir utiliser les filtres, besoin convertion en nombre
   thisWork.categoryId = parseInt(thisWork.categoryId);
   works.push(thisWork);
-  console.log("la var works a ete mis a jour : ", works);
   displayWorks(works);
 }
 
