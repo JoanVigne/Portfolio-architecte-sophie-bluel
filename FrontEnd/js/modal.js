@@ -1,19 +1,12 @@
 import { deleteWork } from "../js/delete.js";
-import { getWorks, getCategories } from "../data/api.js";
-import { displayWorks } from "./works.js";
+import { getWorks } from "../data/api.js";
 import { verifierSiFormEstComplete, submitForm } from "./add.js";
 
-/* let works = [];
-let categories = []; */
-
-const modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modalContent");
 
 let h3ModalContent = modalContent.querySelector("h3");
 let formAjouter = document.querySelector(".formAjouter");
 let buttonModalContent = modalContent.querySelector("button");
-let AModalContent = modalContent.querySelector("a");
-let gallery = document.querySelector(".modalGallery");
 
 export function modifierProjetModalContent(works, categories) {
   const modalModifier = document.querySelector(".modal1");

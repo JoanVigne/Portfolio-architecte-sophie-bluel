@@ -18,7 +18,9 @@ const init = async () => {
     }
   }
 };
-init();
+if (window.location.href !== "http://localhost:8080/login.html") {
+  init();
+}
 function adminMode() {
   // disparition filtre de la gallery
   const filtres = document.querySelector(".filtres");
