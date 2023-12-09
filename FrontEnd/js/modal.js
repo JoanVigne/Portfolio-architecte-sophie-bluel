@@ -85,8 +85,7 @@ async function ajouterPhotoModalContent(works, categories) {
   modalAjouter.style.display = null;
   modalAjouter.setAttribute("aria-hidden", "false");
   let formAjouter = modalAjouter.querySelector("form");
-  /*   works = await getWorks();
-  categories = await getCategories(); */
+
   // event sur les inputs
   let imgInput = formAjouter.querySelector("#ajouterPhoto");
   imgInput.addEventListener("change", (e) => {
@@ -114,7 +113,7 @@ async function ajouterPhotoModalContent(works, categories) {
     }
   });
 
-  // select
+  // select dans le "ajouter photo" form
   let selectCategorie = formAjouter.querySelector("select");
   selectCategorie.addEventListener("change", (e) => {
     // savoir si une option du select a été choisi

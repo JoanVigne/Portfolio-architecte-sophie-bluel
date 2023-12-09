@@ -1,6 +1,5 @@
 import { projetSupprime } from "./main.js";
-import { closeModal, modifierProjetModalContent } from "./modal.js";
-import { displayWorks } from "./works.js";
+import { closeModal } from "./modal.js";
 
 // used in modal
 export async function deleteWork(id) {
@@ -22,7 +21,6 @@ export async function deleteWork(id) {
     console.log(result);
   }
   if (response.status === 204) {
-    /* works = await getWorks(works); */
     closeModal();
     projetSupprime(id);
   }

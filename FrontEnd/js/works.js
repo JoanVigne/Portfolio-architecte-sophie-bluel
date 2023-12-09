@@ -26,7 +26,7 @@ export function displayCategories(categories) {
     displayWorks(works);
   });
   filtres.appendChild(buttonTous);
-  // boucle pour les autres buttons
+  // boucle pour les autres filtres
   categories.forEach((category) => {
     let button = document.createElement("button");
     button.innerHTML = category.name;

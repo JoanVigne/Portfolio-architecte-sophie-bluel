@@ -4,7 +4,7 @@ import { projetAjoute } from "./main.js";
 export function verifierSiFormEstComplete() {
   const formAjouter = document.querySelector(".formAjouter");
   const inputs = formAjouter.querySelectorAll("input");
-  //! mettre des noms aux inputs
+
   let selectCategorie = formAjouter.querySelector("select");
   // je verifie si tous les champs on été rempli
   if (
@@ -22,7 +22,7 @@ export function verifierSiFormEstComplete() {
   }
 }
 
-// url temporaire => pour afficher image css en bg de l'input img
+// url temporaire dans imgajouterPhotoModalContent(works, categories)
 
 export async function submitForm(e) {
   // formdata
